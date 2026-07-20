@@ -49,5 +49,16 @@ CREATE TABLE Loans (
     return_date DATE NULL,
     FOREIGN KEY (book_id) REFERENCES Books(book_id),
     FOREIGN KEY (member_id) REFERENCES Members(member_id)
+    SELECT 
+    l.loan_id AS 'Loan ID',
+    b.title AS 'Book Title',
+    b.author AS 'Author',
+    CONCAT(m.first_name, ' ', m.last_name) AS 'Member Name',
+    l.loan_date AS 'Borrowed On',
+    l.due_date AS 'Due Date',
+    b.status AS 'Current Status'
+FROM Loans l
+JOIN Books b ON l.book_id = b.book_id
+JOIN Members m ON l.member_id = m.member_id;
 );
 
